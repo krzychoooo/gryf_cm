@@ -18,7 +18,6 @@
 #include "timer0x.h"
 #include "rs485Frame.h"
 
-
 FILE mystdout = FDEV_SETUP_STREAM(putchard0Stream, NULL, _FDEV_SETUP_WRITE);
 FILE mystdin = FDEV_SETUP_STREAM(NULL, getchard0, _FDEV_SETUP_READ);
 
@@ -73,12 +72,9 @@ int main()
 
 		asm("sei");
 
-
 		registerTimerd0(&timer10ms);
 		registerTimerc0(&timer10ms);
 		registerTimere0(&timer10ms);
-
-
 
 		LED1_OFF;
 
@@ -106,5 +102,3 @@ int main()
 			_delay_ms(2);
 		}
 }
-
-
