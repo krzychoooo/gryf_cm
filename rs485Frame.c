@@ -25,7 +25,6 @@ void copyModuleConfigRamToEEprom() {
 void sendAskFrame(uint8_t didAddress){
 	uint16_t crc16;
 
-	if(didAddress ==1)LED1_ON;
 	crc16 = 0xffff;
 	putchare0(didAddress);
 	crc16 = _crc16_update(crc16, didAddress);
@@ -91,16 +90,18 @@ uint8_t getFrameFromMd() {
 		mdState = (uint8_t) iData;
 		alarmFrame.mdState = mdState;
 
-		for (i = 0; i != sizeData/2; i++) {
+		for (i = 0; i != sizeData; i++) {
 			iData = getchare0time(10);			// address MM
 			crc16 = _crc16_update(crc16, (uint8_t) iData);
 			alarmFrame.mmAddress[i] = iData;
-			if (debugFrame)	printf("%c", (uint8_t) iData);
+			if (debugFrame)
+				printf("%c", (uint8_t) iData);
 
 			iData = getchare0time(10);			// alarm code MM
 			crc16 = _crc16_update(crc16, (uint8_t) iData);
 			alarmFrame.mmAlarmCode[i] = iData;
-			if (debugFrame)	printf("%c", (uint8_t) iData);
+			if (debugFrame)
+				printf("%c", (uint8_t) iData);
 		}
 
 		// read crc

@@ -88,17 +88,20 @@ int main()
 //enter to user setup
 		enterSetup();
 
-		printf("DIRE=%X PORTE=%x\n",PORTE.DIR,PORTE.OUT);
 		addressMd = 0x01;
 		while(1){
 			sendAskFrame(addressMd);
-			_delay_ms(2);
+			_delay_ms(250);
+			LED1_ON;
 			n = getFrameFromMd();
-//			printf("kod%d\n", n);
-			if(++addressMd == (moduleConfig.maxMdAddress+1)) addressMd = 1;
+
 			if(n == 0){			// 0 -> no error frame OK
 				sendAlarmFrame();
+				LED1_OFF;
 			}
+//			else
+//				printf("kod%d\n\r", n);
+			if(++addressMd == (moduleConfig.maxMdAddress)) addressMd = 1;
 			_delay_ms(2);
 		}
 }

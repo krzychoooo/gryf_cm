@@ -35,7 +35,7 @@ extern const uint16_t baudRateTable[] ;
 void usarte0_init();
 
 // USARTE0 Receiver buffer
-#define RX_BUFFER_SIZE_USARTE0 8
+#define RX_BUFFER_SIZE_USARTE0 32
 
 
 char getchare0();
@@ -43,7 +43,7 @@ void registerTimere0(volatile uint8_t * t);
 char getchare0time(uint8_t time);
 
 // USARTE0 Transmitter buffer
-#define TX_BUFFER_SIZE_USARTE0 8
+#define TX_BUFFER_SIZE_USARTE0 32
 
 // Write a character to the USARTE0 Transmitter buffer
 // USARTE0 is used as the default output device by the 'putchar' function
